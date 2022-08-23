@@ -7,7 +7,12 @@ import rigoImage from "../../img/rigo-baby.jpg";
 const Home = () => {
 	const [list,setList]=useState([])
 	const borrar =(indice)=>{
-		list.filter((elm,indice)=>{if(indice==indice){elm.done=true}})
+		setList(list.filter(()=>list[indice].done=true))
+
+		console.log(list.filter(()=>list[indice].done=true))
+		
+		
+		
 	}
 	const tareas =(e)=>{setList([...list,{"label":e ,"done":false}])
 		}
@@ -47,7 +52,7 @@ useEffect(()=>{
 			<input type="text" placeholder="TAREAS" />
 		</form>
 			{list.map((elm,indice)=>{if(elm.done===false)
-				return <li key={indice}>{elm.label} <button onClick={()=>borrar(elm,indice)}>x</button></li>})}
+				return <li key={indice}>{elm.label} <button onClick={()=>borrar(indice)}>x</button></li>})}
 		</div>
 	);
 };
