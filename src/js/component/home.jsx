@@ -6,6 +6,9 @@ import rigoImage from "../../img/rigo-baby.jpg";
 //create your first component
 const Home = () => {
 	const [list,setList]=useState([])
+	const borrar =(indice)=>{
+		list.filter((elm,indice)=>{if(indice==indice){elm.done=true}})
+	}
 	const tareas =(e)=>{setList([...list,{"label":e ,"done":false}])
 		}
 	const getTask =()=>{
@@ -29,28 +32,23 @@ const Home = () => {
 		.then(data=>data.json())
 		.then(response=>console.log(response))
 	};
+
 useEffect(()=>{
 	getTask();
-
 },[]);
-
-
-
 
 	return (
 		<div className="text-center">
-			
 			<form action="submit" onSubmit={(e)=>{e.preventDefault();
 			    tareas(e.target[0].value);
 				putTask();
 				}}>
 			<h1 className="text-center mt-5">tareas</h1>
 			<input type="text" placeholder="TAREAS" />
-			{list.map((elm,indice)=>{
-				return <li key={indice}>{elm.label}</li>})}
 		</form>
+			{list.map((elm,indice)=>{if(elm.done===false)
+				return <li key={indice}>{elm.label} <button onClick={()=>borrar(elm,indice)}>x</button></li>})}
 		</div>
 	);
 };
-
 export default Home;
