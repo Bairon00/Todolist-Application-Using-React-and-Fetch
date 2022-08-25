@@ -7,8 +7,8 @@ import rigoImage from "../../img/rigo-baby.jpg";
 const Home = () => {
 	const [list,setList]=useState([])
 	const borrar =(indice)=>{
-		setList(list.filter(()=>list[indice].done=true))
-
+		setList(list.filter(()=>list[indice].done=true));
+		putTask();
 		console.log(list.filter(()=>list[indice].done=true))
 		
 		
